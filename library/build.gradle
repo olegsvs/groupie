@@ -1,22 +1,18 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 buildscript {
     repositories {
         jcenter()
     }
-    dependencies {
-        classpath "com.novoda:bintray-release:$novodaBintrayVersion"
-    }
 }
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 27
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,17 +27,21 @@ android {
     }
 }
 
+ext.kotlin_version = '1.2.41'
+ext.android_plugin_version = '3.1.2'
+ext.targetSdkVersion = 27
+ext.compileSdkVersion = 27
+ext.buildToolsVersion = '27.0.3'
+ext.minSdkVersion = 14
+ext.novodaBintrayVersion = '0.8.1'
+ext.supportLibVersion = '27.1.1'
+ext.databinding_version = '3.1.1'
+
+ext.junit_version = '4.12'
+ext.mockito_version = '2.16.0'
+
 dependencies {
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
-}
-
-publish {
-    userOrg = 'lisawray'
-    groupId = 'com.xwray'
-    artifactId = 'groupie'
-    publishVersion = '2.1.0'
-    desc = 'Library for groups and multiple view types in a RecyclerView'
-    website = 'https://github.com/lisawray/groupie'
 }
