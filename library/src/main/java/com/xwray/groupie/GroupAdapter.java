@@ -22,6 +22,7 @@ public class GroupAdapter<VH extends ViewHolder> extends RecyclerView.Adapter<VH
     private final List<Group> groups = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
+    private ItemClickListener<Object> itemClickListener;
     private int spanCount = 1;
     private Item lastItemForViewTypeLookup;
 
@@ -138,6 +139,11 @@ public class GroupAdapter<VH extends ViewHolder> extends RecyclerView.Adapter<VH
         this.onItemClickListener = onItemClickListener;
     }
 
+
+    public void setItemClickListener(@Nullable ItemClickListener<Object> itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
     /**
      * Optionally register an {@link OnItemLongClickListener} that listens to long click at the root of
      * each Item where {@link Item#isLongClickable()} returns true
@@ -165,7 +171,7 @@ public class GroupAdapter<VH extends ViewHolder> extends RecyclerView.Adapter<VH
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position, @NonNull List<Object> payloads) {
         Item contentItem = getItem(position);
-        contentItem.bind(holder, position, payloads, onItemClickListener, onItemLongClickListener);
+        contentItem.bind(holder, position, payloads, onItemClickListener, onItemLongClickListener, itemClickListener);
     }
 
     @Override

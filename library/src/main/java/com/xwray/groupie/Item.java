@@ -44,12 +44,12 @@ public abstract class Item<VH extends ViewHolder> implements Group, SpanSizeProv
     @CallSuper
     public void bind(@NonNull VH holder, int position, @NonNull List<Object> payloads,
                      @Nullable OnItemClickListener onItemClickListener,
-                     @Nullable OnItemLongClickListener onItemLongClickListener) {
+                     @Nullable OnItemLongClickListener onItemLongClickListener, ItemClickListener listener) {
         holder.bind(this, onItemClickListener, onItemLongClickListener);
-        bind(holder, position, payloads);
+        bind(holder, position, payloads, listener);
     }
 
-    public abstract void bind(@NonNull VH viewHolder, int position);
+    public abstract void bind(@NonNull VH viewHolder, int position, ItemClickListener listener);
 
     /**
      * If you don't specify how to handle payloads in your implementation, they'll be ignored and
@@ -59,8 +59,8 @@ public abstract class Item<VH extends ViewHolder> implements Group, SpanSizeProv
      * @param position The adapter position
      * @param payloads A list of payloads (may be empty)
      */
-    public void bind(@NonNull VH holder, int position, @NonNull List<Object> payloads) {
-        bind(holder, position);
+    public void bind(@NonNull VH holder, int position, @NonNull List<Object> payloads, ItemClickListener listener) {
+        bind(holder, position, listener);
     }
 
     /**
